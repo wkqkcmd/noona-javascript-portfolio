@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>book search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container">
+      <div class="search-area">
+        <input class="user-search" type="text" placeholder="책 제목 검색" />
+        <button class="search-button">검색</button>
+      </div>
+      <span class="more-search">
+        <span>도서 유형: </span>
+        <button class="all-button">all</button>/
+        <button class="books-button">books</button>/
+        <button class="magazines-button">magazines</button>/
+      </span>
+        <button class="ebook-button">ebook</button>
+    </header>
+    <main class="container result-area"> 
+      <div class="books row">
+        <div class="col-lg-4">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/5833/5833263.png"
+            alt=""
+          />
+        </div>
+        <div class="col-lg-8">
+          <h3>제목: </h3>
+          <h6>저자: </h6>
+          <h6>가격: </h6>
+          <p>책소개: </p>
+          <h6>출판사: </h6>
+        </div>
+      </div>
+    </main>
+    <footer class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        </ul>
+      </nav>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
