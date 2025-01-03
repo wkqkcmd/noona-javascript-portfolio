@@ -10,6 +10,8 @@ let url = new URL(
   `https://www.googleapis.com/books/v1/volumes?q=*&key=${API_KEY}`
 );
 
+let page = 1;
+const groupSize = 5;
 let totalBooks = 0;
 let startIndex = 0; // 검색결과 색인(0부터 시작)
 const maxResults = 5; // pageSize
@@ -28,12 +30,18 @@ const getBooks = async () => {
       console.log("response", response);
       console.log("data", data);
       booksData = data.items;
-      totalBooks = data.totalItems;
 
-      // 책 개수가 110개 이상일 경우 반환값에 에러있을 수 있으므로 110개로 제한한다.
+      // totalBooks가 페이지마다 바뀌어 에러가 생길수 있기 때문에
+      // 1페이지에서의 totalBooks로 고정하였음.
+      if (startIndex === 0) {
+        totalBooks = data.totalItems;
+      }
+
+      // 책 개수가 110개 이상일 경우 반환값에 에러있을 수 있으므로 110개로 제한하였음.
       if (totalBooks >= 110) {
         totalBooks = 110;
       }
+
       console.log("totalBooks", totalBooks);
       renderBooks();
       renderPagination();
@@ -45,7 +53,7 @@ const getBooks = async () => {
   }
 };
 
-getBooks();
+// getBooks(); 첫화면에서 페이지네이션 에러가 있어서 공백 검색이 첫화면이 되도록함. 
 
 const errorRender = (message) => {
   const errorHTML = `<div class="alert alert-danger" role="alert">
@@ -111,6 +119,8 @@ const renderSearch = async () => {
   getBooks();
 };
 
+renderSearch();
+
 // 입력창 포커스시 공백으로 초기화
 userSearch.addEventListener("focus", (e) => {
   e.target.value = "";
@@ -152,9 +162,6 @@ const renderEbooks = async () => {
 };
 
 // 페이지네이션
-let page = 1;
-const groupSize = 5;
-
 const renderPagination = () => {
   let pageGroup = Math.ceil(page / groupSize);
   let lastPage = pageGroup * groupSize;
@@ -167,7 +174,7 @@ const renderPagination = () => {
   }
 
   // 마지막 페이지가 그룹사이즈보다 작을 때 마지막페이지까지만 페이지네이션 출력
-  if (totalPages < pageGroup*groupSize){
+  if (totalPages < pageGroup * groupSize) {
     lastPage = totalPages;
   }
 
